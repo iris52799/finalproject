@@ -1,0 +1,46 @@
+---
+title: "BST 260 Final Project Proposal"
+author: "Iris Chen"
+---
+
+Dear BST260 Teaching Team, Fall 2026,
+
+For my final project, I plan to use two datasets we worked with in class. In the first vignette, I’ll look at whether foodborne and waterborne outbreaks tend to start at different times of year. In the second, I’ll look at how homicide mortality rates changed across U.S. states and D.C.
+
+## Vignette 1. When do foodborne and waterborne outbreaks start?
+
+**Research question.** Among outbreaks with onset in 2009–2019 reported to CDC in a single U.S. state or D.C., were waterborne outbreaks more likely than foodborne outbreaks to start in summer?
+
+The `waterborne` dataset comes from CDC’s National Outbreak Reporting System (NORS). I’ll turn the list into a table with one row per reported outbreak and check for duplicate report IDs where IDs are available. [CDC NORS dataset](https://data.cdc.gov/Foodborne-Waterborne-and-Related-Diseases/NORS/5xkq-dg7x/about_data)
+
+- The **exposure** is the reported mode of transmission, coded as waterborne or foodborne, with foodborne as the reference group. 
+
+- The **binary outcome** is whether the first reported onset month falls in summer (June–August). 
+
+- Records will be counted and excluded if the transmission mode is missing, unknown, or outside the two groups, if the year is missing or outside 2009–2019, or if the outbreak cannot be assigned to a single U.S. state or D.C. 
+
+- Missing or invalid onset months will be reported by transmission mode before those records are excluded from the timing analysis.
+
+Monthly counts and a plot of monthly percentages will show how outbreak timing varies across the two groups. To estimate the percentage-point difference in summer onset, I’ll fit a logistic regression model and standardize both groups to the same distribution of Census region and onset year. 
+
+- Region matters because climate and activities linked to outbreaks vary across the country. 
+
+- Onset year accounts for differences over time in reporting practices and the mix of outbreaks. 
+
+Because reporting to NORS is voluntary, the findings describe outbreaks captured by the system. [CDC reporting and data limitations](https://www.cdc.gov/nors/data/)
+
+## Vignette 2. How did homicide mortality rates change?
+
+**Research question.** How did average annual age-adjusted homicide mortality rates in the 50 U.S. states and D.C. change from 2017–2019 to 2022–2024?
+
+I’ll use the `cdcmurd` dataset from Problem Set 3 to compare homicide mortality across two calendar periods, with **2017–2019** as the reference and **2022–2024** as the comparison period.
+
+- Each row represents a U.S. state or D.C. in a given year, and the **outcome** is the continuous age-adjusted homicide mortality rate per 100,000 people. 
+
+- To compare the same jurisdictions across both periods, the main analysis will include only those with a rate in all six years. I’ll report how many rates are missing in each period and count any rows excluded because the year or jurisdiction could not be identified. [CDC/NCHS homicide mortality data](https://www.cdc.gov/nchs/state-stats/deaths/homicide.html) · [Problem Set 3](https://vjcitn.github.io/2026vjc/psets2026/pset-03-various.html)
+
+For each jurisdiction, I’ll subtract its average annual rate in 2017–2019 from its average in 2022–2024. Comparing each jurisdiction with itself accounts for differences between places that stay stable over time. I’ll use medians and interquartile ranges to summarize the rates in each period and the changes across jurisdictions. A plot of annual rates from 2017 through 2024 will show any shorter-term changes that the three-year averages might miss. 
+
+In interpreting the results, I’ll consider which jurisdictions were left out because of missing rates and where small death counts may make annual rates unstable. The dataset provides limited information about what drove the changes.
+
+I’ll write R functions to calculate the same summaries across groups. Both vignettes will explain where the data came from, present the results, and discuss the limitations. The vignettes will appear on the [pkgdown site](https://iris52799.github.io/finalproject/), with a short project summary in the README of the [public R package repository](https://github.com/iris52799/finalproject).

@@ -6,10 +6,13 @@ Authors@R:
            family = "Chen",
            role = c("aut", "cre"),
            email = "yirongchen@hsph.harvard.edu",
-           comment = c(ORCID = "0000-0002-1825-0097"))
-Description: Contains public health datasets for the BST 260 final project.
-    The package provides documentation for the included datasets.
-    Its website presents the project analyses and their limitations.
+           comment = c(ORCID = "0009-0000-8397-6911"))
+Description: Contains public health datasets and documentation for the BST 260
+    final project. The project compares the share of reported foodborne and
+    waterborne outbreaks that began in summer from 2009 to 2019. It also examines
+    changes in age-adjusted homicide mortality rates across U.S. states and the
+    District of Columbia between 2017-2019 and 2022-2024. The accompanying
+    website presents the analyses, findings, and limitations.
 Depends: R (>= 4.5.0)
 Suggests: knitr, testthat, rmarkdown, pkgdown
 License: Artistic-2.0
